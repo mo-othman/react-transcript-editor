@@ -126,7 +126,7 @@ const amazonTranscribeToDraft = amazonTranscribeJson => {
   const wordsWithRemappedPunctuation = mapPunctuationItemsToWords(tmpWords);
   const speakerSegmentation = typeof(speakerLabels) != 'undefined';
 
-  const wordsByParagraphs = speakerSegmentation ?
+  const wordsByParagraphs = speakerSegmentation && speakerLabels.speakers > 1 ?
     groupSpeakerWordsInParagraphs(wordsWithRemappedPunctuation, speakerLabels) :
     groupWordsInParagraphs(
       wordsWithRemappedPunctuation
@@ -137,7 +137,8 @@ const amazonTranscribeToDraft = amazonTranscribeJson => {
       text: paragraph.text.join(' '),
       type: 'paragraph',
       data: {
-        speaker: paragraph.speaker ? `Speaker ${ paragraph.speaker }` : `TBC ${ i }`,
+        // speaker: paragraph.speaker ? `Speaker ${ paragraph.speaker }` : `TBC ${ i }`,
+        speaker: paragraph.speaker ? `Speaker ${ paragraph.speaker }` : speakerLabels && speakerLabels.speakers === 1 ? `Speaker 1` : `TBC ${ i }`,
         words: paragraph.words,
         start: parseFloat(paragraph.words[0].start)
       },

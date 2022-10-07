@@ -12,8 +12,8 @@ import {
   localSave
 } from "./local-storage.js";
 
-import DEMO_TRANSCRIPT from "./sample-data/KateDarling-bbcKaldiTranscriptWithSpeakerSegments.json";
-const DEMO_MEDIA_URL =
+import DEMO_TRANSCRIPT from "./sample-data/1speaker.json";
+const DEMO_MEDIA_URL = //"https://rr3---sn-8pxuuxa-nbo6l.googlevideo.com/videoplayback?expire=1665149956&ei=pNc_Y_O6KK-1ir4P3L-MoAw&ip=181.214.165.230&id=o-AAKUBFVETd-NR6onOHcIkn2vCvLChenr8MmP4sGGPqfA&itag=18&source=youtube&requiressl=yes&spc=yR2vpzUxBtOetWQ8f9FshsrSbhdsHew&vprv=1&mime=video%2Fmp4&ns=Xr2xDYMn0yOvTh0REuj6GWwI&gir=yes&clen=42353889&ratebypass=yes&dur=564.992&lmt=1649114342116256&fexp=24001373,24007246&c=WEB&txp=4530434&n=8vcgoqTkSpQrfw&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRgIhAKYTkqSkKsLRW-NBLxeYp9siKaUyldcbfKCCt40AQgl7AiEA-3etW8jpFeECaMdmFhxdkHjJKBXamUN6HGZgmpwNWm0%3D&rm=sn-vgqeek7s&req_id=afc4571fa328a3ee&ipbypass=yes&redirect_counter=2&cm2rm=sn-8pxuuxa-83be7d&cms_redirect=yes&cmsv=e&mh=m7&mip=115.75.163.183&mm=29&mn=sn-8pxuuxa-nbo6l&ms=rdu&mt=1665127987&mv=m&mvi=3&pl=22&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRAIgXXrVWJNgbIL40MI94Hqmqmp3nVp8P6bOhcih7hbcvbkCIG5F5hW7GiOghSUYhM4QWIE-G9hXVPxSy159RWWXQgai"
   "https://download.ted.com/talks/KateDarling_2018S-950k.mp4";
 const DEMO_TITLE =
   "TED Talk | Kate Darling - Why we have an emotional connection to robots";
@@ -29,7 +29,7 @@ class App extends React.Component {
       mediaUrl: null,
       isTextEditable: true,
       spellCheck: false,
-      sttType: "bbckaldi",
+      sttType: "amazontranscribe",
       analyticsEvents: [],
       title: "",
       fileName: "",
@@ -56,7 +56,7 @@ class App extends React.Component {
         transcriptData: DEMO_TRANSCRIPT,
         mediaUrl: DEMO_MEDIA_URL,
         title: DEMO_TITLE,
-        sttType: "bbckaldi"
+        sttType: "amazontranscribe"
       });
     }
    
@@ -324,7 +324,7 @@ class App extends React.Component {
           mediaType={ 'video' }
         />
 
-        <section style={{ height: "250px", width: "50%", float: "left" }}>
+        {/* <section style={{ height: "250px", width: "50%", float: "left" }}>
           <h3>Components Analytics</h3>
           <textarea
             style={{ height: "100%", width: "100%" }}
@@ -349,7 +349,7 @@ class App extends React.Component {
             }
             disabled
           />
-        </section>
+        </section> */}
       </div>
     );
   }
